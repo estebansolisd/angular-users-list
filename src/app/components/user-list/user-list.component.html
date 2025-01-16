@@ -1,0 +1,22 @@
+<div *ngIf="isLoading" class="loading">Loading...</div>
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+<div class="p-2" *ngIf="!isLoading && !errorMessage">
+  <h1>User List</h1>
+  <div class="mb-4">
+    <input
+      type="text"
+      [(ngModel)]="search"
+      (input)="filterSearch()"
+      placeholder="Search by name..."
+      class="min-w-32 p-2 border border-1 border-r-red-200 rounded-lg shadow-sm"
+    />
+  </div>
+  <ul class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2">
+    <li *ngFor="let user of filteredUsers" class="user-item">
+      <h3>{{ user.name }}</h3>
+      <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+    </li>
+  </ul>
+</div>
